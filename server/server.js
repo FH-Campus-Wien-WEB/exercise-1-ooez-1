@@ -10,16 +10,16 @@ app.get('/movies', function (req, res) {
   const movies = [
     {
       Title: 'Interstellar',
-  Released: '2014-11-07',
-  Runtime: 169,
-  Genres: ['Adventure', 'Drama', 'Sci-Fi'],
-  Directors: ['Christopher Nolan'],
-  Writers: ['Jonathan Nolan', 'Christopher Nolan'],
-  Actors: ['Matthew McConaughey', 'Anne Hathaway', 'Jessica Chastain'],
-  Plot: 'A team of explorers travel through a wormhole in space in an attempt to ensure humanity\'s survival.',
-  Poster: '/interstellar.jpg',
-  Metascore: 74,
-  imdbRating: 8.6
+      Released: '2014-11-07',
+      Runtime: 169,
+      Genres: ['Adventure', 'Drama', 'Sci-Fi'],
+      Directors: ['Christopher Nolan'],
+      Writers: ['Jonathan Nolan', 'Christopher Nolan'],
+      Actors: ['Matthew McConaughey', 'Anne Hathaway', 'Jessica Chastain'],
+      Plot: 'A team of explorers travel through a wormhole in space in an attempt to ensure humanity\'s survival.',
+      Poster: '/interstellar.jpg',
+      Metascore: 74,
+      imdbRating: 8.6
     },
     {
       Title: 'La La Land',

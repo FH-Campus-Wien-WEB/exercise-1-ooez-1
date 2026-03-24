@@ -8,7 +8,7 @@
     <style>
         /* Part 3: Your styling goes here */
         body {
-                    font-family: 'Trebuchet MS', sans-serif;
+            font-family: 'Trebuchet MS', sans-serif;
             background-color: #f2f2f2;
             margin: 0;
             padding: 24px;
@@ -69,8 +69,8 @@
                 const bodyElement = document.querySelector("body")
 
                 if (xhr.status == 200) {
-		            /* Part 2: Build the HTML elements here and append them to the body */ 
-                     const movies = JSON.parse(xhr.responseText)
+                    /* Part 2: Build the HTML elements here and append them to the body */
+                    const movies = JSON.parse(xhr.responseText)
 
                     movies.forEach(function (movie) {
                         const article = document.createElement("article")
@@ -158,5 +158,6 @@
 
 <body>
 </body>
+
 
 </html>
