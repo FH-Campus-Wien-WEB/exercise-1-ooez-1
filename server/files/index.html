@@ -101,6 +101,12 @@
                         const plot = document.createElement("p")
                         plot.textContent = movie.Plot
 
+                        const metascore = document.createElement("p")
+                        metascore.textContent = "Metascore: " + movie.Metascore
+
+                        const imdbRating = document.createElement("p")
+                        imdbRating.textContent = "IMDb Rating: " + movie.imdbRating
+
                         const directorsHeading = document.createElement("h2")
                         directorsHeading.textContent = "Director"
 
@@ -136,6 +142,8 @@
                         article.append(info)
                         article.append(genres)
                         article.append(plot)
+                        article.append(metascore)
+                        article.append(imdbRating)
                         article.append(directorsHeading)
                         article.append(directorsList)
                         article.append(writersHeading)
