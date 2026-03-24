@@ -7,19 +7,144 @@
     <title>Movies!</title>
     <style>
         /* Part 3: Your styling goes here */
-    </style>
-    <script>
-        function reverseString(s) {
-            return s.split("").reverse().join("");
+        body {
+                    font-family: 'Trebuchet MS', sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 24px;
         }
 
+        article {
+            background-color: #d9d9d9;
+            border-radius: 20px;
+            margin: 0 auto 24px auto;
+            padding: 20px;
+            max-width: 720px;
+        }
+
+        img {
+            max-width: 360px;
+            width: 100%;
+            border-radius: 16px;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-weight: bold;
+            margin: 0 0 12px 0;
+        }
+
+        h2 {
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin: 10px 0;
+            line-height: 1.4;
+        }
+
+        ul {
+            margin-top: 8px;
+        }
+
+        span {
+            margin-right: 8px;
+        }
+
+        .genre {
+            background-color: #ececec;
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+    </style>
+    <script>
         window.onload = function () {
             const xhr = new XMLHttpRequest()
+
             xhr.onload = function () {
                 const bodyElement = document.querySelector("body")
+
                 if (xhr.status == 200) {
 		            /* Part 2: Build the HTML elements here and append them to the body */ 
-                    bodyElement.append(reverseString(xhr.responseText))
+                     const movies = JSON.parse(xhr.responseText)
+
+                    movies.forEach(function (movie) {
+                        const article = document.createElement("article")
+
+                        const poster = document.createElement("img")
+                        poster.src = movie.Poster
+                        poster.alt = movie.Title + " poster"
+
+                        const title = document.createElement("h1")
+                        title.textContent = movie.Title
+
+                        const runtimeHours = Math.floor(movie.Runtime / 60)
+                        const runtimeMinutes = movie.Runtime % 60
+                        const date = new Date(movie.Released)
+                        const formattedDate = (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear()
+
+                        const info = document.createElement("p")
+                        info.textContent = "Runtime " + runtimeHours + "h " + runtimeMinutes + "m • Released on " + formattedDate
+
+                        const genres = document.createElement("p")
+                        movie.Genres.forEach(function (genre) {
+                            const genreElement = document.createElement("span")
+                            genreElement.className = "genre"
+                            genreElement.textContent = genre
+                            genres.append(genreElement)
+                        })
+
+                        const plot = document.createElement("p")
+                        plot.textContent = movie.Plot
+
+                        const directorsHeading = document.createElement("h2")
+                        directorsHeading.textContent = "Director"
+
+                        const directorsList = document.createElement("ul")
+                        movie.Directors.forEach(function (director) {
+                            const item = document.createElement("li")
+                            item.textContent = director
+                            directorsList.append(item)
+                        })
+
+                        const writersHeading = document.createElement("h2")
+                        writersHeading.textContent = "Writers"
+
+                        const writersList = document.createElement("ul")
+                        movie.Writers.forEach(function (writer) {
+                            const item = document.createElement("li")
+                            item.textContent = writer
+                            writersList.append(item)
+                        })
+
+                        const actorsHeading = document.createElement("h2")
+                        actorsHeading.textContent = "Actors"
+
+                        const actorsList = document.createElement("ul")
+                        movie.Actors.forEach(function (actor) {
+                            const item = document.createElement("li")
+                            item.textContent = actor
+                            actorsList.append(item)
+                        })
+
+                        article.append(poster)
+                        article.append(title)
+                        article.append(info)
+                        article.append(genres)
+                        article.append(plot)
+                        article.append(directorsHeading)
+                        article.append(directorsList)
+                        article.append(writersHeading)
+                        article.append(writersList)
+                        article.append(actorsHeading)
+                        article.append(actorsList)
+
+                        bodyElement.append(article)
+                    })
                 } else {
                     bodyElement.append("Daten konnten nicht geladen werden, Status " + xhr.status + " - " + xhr.statusText)
                 }
